@@ -1,8 +1,21 @@
 #!/usr/bin/env bash
 
-grep -E 'Tctl|Tdie|Package id' /sys/class/hwmon/hwmon*/temp*_label | head -n1 | cut -d':' -f1 | sed 's/label/input/' | xargs cat
+mili_celcius_temprature=$(grep -E 'Tctl|Tdie|Package id' /sys/class/hwmon/hwmon*/temp*_label | head -n1 | sed 's/label/input/' | cut -d':' -f1 | xargs cat)
 
 # Following script outputs current cpu die temperature in milidegree-celcius, convert it to celcius and fahrenheit and display as:
 #
 # Celcius: 42.0 C
 # Fahrenheit: 107.6 F
+
+if [[ -z "$mili_celcius_temprature" || ! "$mili_celcius_temprature" =~ ^[0-9]+$ ]]; then
+    echo "Error: Unable to fetch CPU temperature."
+    exit 1
+fi
+
+Celcius_temprature=$(echo "scale=1; $mili_celcius_temprature / 1000" | bc)
+farenheit_temprature=$(echo "scale=1; ($Celcius_temprature * 9/5) + 32" | bc)
+
+echo "  CPU Temperature in celcius and farenheits "
+
+echo "Celsius   : $Celcius_temprature °C"
+echo "Fahrenheit: $farenheit_temprature °F"
