@@ -2,3 +2,21 @@
 
 # TODO: Display weather of IIIT, Lucknow
 # For more information see: https://wttr.in/:help
+
+
+location="IIIT, Lucknow"
+
+curl -s "wttr.in/${location}?format=3"
+
+location="Delhi"
+
+curl -s "wttr.in/${location}?format=3"
+
+location="Meerut"
+
+curl -s "wttr.in/${location}?format=3"
+
+
+
+
+
