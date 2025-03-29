@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+!/usr/bin/env bash
 
 # TODO (Run this script as): color magenta && echo hello && color reset
 
@@ -9,11 +9,19 @@ color() {
 declare -A color_mapping=(
     # TODO: Add more color values
     # Refer bash color codes
+
+    # I Added more colors. 
+
     ['magenta']=35
+     ['black']=30
+    ['red']=31
+    ['blue']=34
+    ['white']=37
+    ['reset']=0
 )
 
 if [[ $1 == 'reset' ]]; then
-    color 0 00
+    color 0 
 else
     color 1 ${color_mapping[$1]}
 fi
