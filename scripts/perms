@@ -7,3 +7,22 @@
 # 775 weather
 # 664 ../README.md
 
+
+# I added a for loop ,then use a conditional statement and by using both of them code will print permissions of the given files in octal format.
+
+for files in "$@"; do
+
+    if [ -e "$files" ]; then
+
+        permission=$(stat -c "%a" "$files")
+
+        echo "$permission $files"
+
+    else
+
+        echo "Error: $files does not exist" >&2
+
+    fi
+done
+
+
