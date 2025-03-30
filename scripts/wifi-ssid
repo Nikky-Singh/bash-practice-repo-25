@@ -2,3 +2,24 @@
 
 # Extract the wifi username (SSID)
 # Refer: "iw dev wlan0 link" command output for this
+
+#!/usr/bin/env bash
+
+# Extract the wifi username (SSID)
+# Refer: "iw dev wlan0 link" command output for this
+
+SSID=$(iw dev wlan0 link | grep 'SSID' | awk '{print substr($0, index($0,$2))}')
+
+# I added a script who fetches the SSID of wifi network currently connected .
+# also i added a Script which check the wifi is connected to a network or not .
+
+
+if [ -z "$SSID" ]; then
+
+    echo "wifi is not connected yet "
+
+else
+
+    echo " SSID(wifi username ) of connected wifi network is : $SSID"
+
+fi
