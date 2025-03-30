@@ -10,17 +10,17 @@
 
 # I added a for loop ,then use a conditional statement and by using both of them code will print permissions of the given files in octal format.
 
-for files in "$@"; do
+for file in "$@"; do
 
-    if [ -e "$files" ]; then
+    if [ -e "$file" ]; then  
 
-        permission=$(stat -c "%a" "$files")
+        permission=$(stat -c "%a" "$file" 2>/dev/null || stat -f "%A" "$file")  
 
-        echo "$permission $files"
+        echo "$permission $file"
 
     else
 
-        echo "Error: $files does not exist" >&2
+        echo "Error: $file does not exist" >&2
 
     fi
 done
