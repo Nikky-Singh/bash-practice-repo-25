@@ -9,5 +9,5 @@ echo "remove/delete all the binary in directory  $(pwd)-----"
 
 find . -type f -executable ! -name "*.*" -delete
 
-echo "delete binary files complete . "
+echo "delete binary files complete ."
 
