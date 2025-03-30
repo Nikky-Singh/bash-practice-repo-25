@@ -2,3 +2,12 @@
 
 # Remove all the binary files (usually made after gcc) present inside current directory
 # Refer "man find" for more information, you can also use modern tool like fd instead of find
+
+
+echo "remove/delete all the binary in directory  $(pwd)-----"
+# I added a script below which find and delete binary files in the current directory . and also i Print a mesage After deleting the files .
+
+find . -type f -executable ! -name "*.*" -delete
+
+echo "delete binary files complete . "
+
